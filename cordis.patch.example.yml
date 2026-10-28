@@ -1,0 +1,6 @@
+# Add this row to your profile's cordis.patch.yml to mount the demo plugin.
+# The package itself must already be installed as a dependency of the profile
+# (see README.md), so the Loader can resolve `dsh-code-diff-highlight`.
+
+- id: code-diff-highlight
+  name: dsh-code-diff-highlight

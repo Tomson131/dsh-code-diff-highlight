@@ -1,0 +1,13 @@
+# dsh-code-diff-highlight — bundle patch.
+#
+# Applied when this package is listed in `dsh.profile.bundles`. It inserts the
+# plugin's host row; the browser half is discovered separately through the
+# package's `dsh.client` declaration and served at /plugins/<id>/client.js.
+#
+# If you instead mount the plugin manually through your profile's
+# cordis.patch.yml, do NOT also list the package as a bundle — that would
+# register the row twice.
+
+- insert:
+    - id: code-diff-highlight
+      name: dsh-code-diff-highlight
