@@ -2,6 +2,22 @@
   "name": "dsh-code-diff-highlight",
   "version": "0.1.0",
   "description": "Client plugin for DeepSeek Harness: custom diff panel that opens a changed file's comparison in a right-sidebar tab.",
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "diff",
+    "plugin",
+    "cordis"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomson131/dsh-code-diff-highlight.git"
+  },
+  "homepage": "https://github.com/Tomson131/dsh-code-diff-highlight#readme",
+  "bugs": {
+    "url": "https://github.com/Tomson131/dsh-code-diff-highlight/issues"
+  },
   "type": "module",
   "main": "lib/index.js",
   "exports": {

@@ -1,54 +1,58 @@
 # dsh-code-diff-highlight
 
-Клиентский плагин для **DeepSeek Harness**: показывает файлы, изменённые за
-ход, и открывает сравнение каждого файла в отдельной **вкладке правой панели**
-с собственной подсветкой diff.
+[![npm version](https://img.shields.io/npm/v/dsh-code-diff-highlight)](https://www.npmjs.com/package/dsh-code-diff-highlight)
+[![license](https://img.shields.io/npm/l/dsh-code-diff-highlight)](https://github.com/Tomson131/dsh-code-diff-highlight/blob/main/LICENSE)
 
-## Возможности
+A client plugin for **DeepSeek Harness** that lists the files changed by a turn
+and opens each file's comparison in a dedicated **right-sidebar tab** with
+custom diff highlighting.
 
-- Карточка **«Custom diff panel»** в конце хода — список изменённых файлов
-  с числом добавленных и удалённых строк.
-- **Клик по файлу открывает diff в отдельной вкладке правой панели** (не в чате).
-- Режимы **Unified** и **Side-by-side**.
-- Номера строк для старой и новой стороны; зелёные `+` / красные `-`;
-  собственный лёгкий токенизатор синтаксиса.
-- Корректно показывает `binary`, `too large` и `coarse` (таймаут сравнения).
-- Если ход ничего не изменил — карточка не показывается.
+## Features
 
-## Установка
+- A **“Custom diff panel”** card at the end of every turn, listing the changed
+  files with added/deleted line counts.
+- **Click a file to open its diff in a separate right-sidebar tab** (not inline
+  in the chat).
+- **Unified** and **Side-by-side** views.
+- Line numbers for both sides; green `+` / red `-`; a lightweight built-in
+  syntax highlighter.
+- Handles `binary`, `too large`, and `coarse` (timed-out) comparisons.
+- No card is shown for turns that changed nothing.
 
-Пакет — **бандл**: при установке плагин монтируется автоматически, править
-профиль вручную не нужно.
+## Install
+
+The package is a **bundle**: installing it mounts the plugin automatically — no
+manual profile edits.
 
 ```powershell
 cd C:\Users\<user>\.dsh\profiles\desktop
 pnpm add dsh-code-diff-highlight
 ```
 
-Затем добавьте `dsh-code-diff-highlight` в `dsh.profile.bundles` в `package.json`
-профиля — или установите из GUI: сайдбар → **Plugins**.
+Then add `dsh-code-diff-highlight` to `dsh.profile.bundles` in the profile's
+`package.json`, or install it from the GUI: sidebar → **Plugins**.
 
-Если GUI уже был открыт — перезагрузите страницу (F5).
+If the GUI was already open, reload the page (F5).
 
-## Использование
+## Usage
 
-После хода, изменившего файлы, под ответом появляется карточка
-**«Custom diff panel»**. Клик по файлу открывает его diff в правой панели;
-внутри вкладки можно переключаться между файлами.
+After a turn that changed files, a **“Custom diff panel”** card appears under
+the reply. Click a file to open its diff in the right panel; switch between
+files from within the tab.
 
-## Как это работает
+## How it works
 
-Клиентский Cordis-плагин (`dsh.client`, `platform: "web"`):
+A Cordis client plugin (`dsh.client`, `platform: "web"`):
 
-1. сворачивает события `workspace/changes` в данные хода
+1. folds `workspace/changes` events into per-turn data
    (`ctx.uiConversation.events.register`);
-2. регистрирует тип вкладки правой панели и её тело
-   (`ctx.sidebarRightTabs.register` + слот `sidebar.right.pane.tab`);
-3. читает данные через авторизованные роуты
-   `api/changes.summary` и `api/changes.diff`.
+2. registers a right-sidebar tab type and its body
+   (`ctx.sidebarRightTabs.register` + the `sidebar.right.pane.tab` slot);
+3. reads data through the authenticated `api/changes.summary` and
+   `api/changes.diff` routes.
 
-`lib/client.js` — готовый браузерный бандл, сборка не требуется.
+`lib/client.js` is a pre-built browser bundle — no build step is required.
 
-## Лицензия
+## License
 
 MIT
